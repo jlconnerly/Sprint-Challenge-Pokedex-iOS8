@@ -44,6 +44,10 @@ class SearchPokemonViewController: UIViewController {
     //
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
+        guard let pokeController = pokeController,
+              let pokemon = pokemon else { return }
+        pokeController.pokemonList.append(pokemon)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func updateView() {

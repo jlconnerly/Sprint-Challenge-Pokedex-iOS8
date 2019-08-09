@@ -24,8 +24,12 @@ class MainPokemonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
 
@@ -38,6 +42,14 @@ class MainPokemonViewController: UIViewController {
         if segue.identifier == "SearchSegue" {
             guard let searchVC = segue.destination as? SearchPokemonViewController else { return }
             searchVC.pokeController = pokeController
+        }
+        if segue.identifier == "ShowDetailSegue" {
+            guard let showDetailVC = segue.destination as? DetailViewController,
+                  let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            showDetailVC.pokeController = pokeController
+            showDetailVC.pokemon = pokeController.pokemonList[indexPath.row]
+            
         }
     }
     

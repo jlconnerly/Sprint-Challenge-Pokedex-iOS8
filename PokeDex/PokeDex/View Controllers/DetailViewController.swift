@@ -23,26 +23,46 @@ class DetailViewController: UIViewController {
     
     var pokeController: PokeController?
     
-    //
-    //MARK: - View LifeCycle
-    //
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    var pokemon: Pokemon? {
+        didSet {
+            updateViews()
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func updateViews() {
+        
+        guard let pokemon = pokemon else { return }
+        
+        var abilities: String = ""
+        for ability in pokemon.abilities {
+            abilities.append(contentsOf: "\(ability.ability.name) ")
+        }
+        
+        var types: String = ""
+        for type in pokemon.types {
+            types.append(contentsOf: "\(type.type.name) ")
+        }
+        
+        let imageURL = pokemon.sprites.frontDefault
+        
+        pokeController?.fetchPokemonImage(from: imageURL, completion: { result in
+            do {
+                let imageData = try result.get()
+                let pokemonImage = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    self.pokeImageView.image = pokemonImage
+                    self.pokeNameLabel.text = pokemon.name
+                    self.IDLabel.text = String(pokemon.id)
+                    self.abilitiesLabel.text = abilities
+                    self.typeLabel.text = types
+                }
+            }catch {
+                NSLog("Error getting image:\(error)")
+            }
+        })
+        
+ 
     }
-    */
-
 }
 
 
