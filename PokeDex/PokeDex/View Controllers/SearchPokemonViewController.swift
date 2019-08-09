@@ -16,7 +16,7 @@ class SearchPokemonViewController: UIViewController {
 
 
     @IBOutlet weak var pokeSearchBar: UISearchBar!
-    @IBOutlet weak var pokeTItleLabel: UILabel!
+    @IBOutlet weak var pokeTitleLabel: UILabel!
     @IBOutlet weak var pokeImageView: UIImageView!
     @IBOutlet weak var IDLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -47,23 +47,39 @@ class SearchPokemonViewController: UIViewController {
     }
     
     private func updateView() {
+        
         guard let pokemon = pokemon else { return }
-
-        pokeTItleLabel.text = pokemon.name
-        IDLabel.text = String(pokemon.id)
         
         var abilities: String = ""
         for ability in pokemon.abilities {
             abilities.append(contentsOf: "\(ability.ability.name) ")
         }
-        abilitiesLabel.text = abilities
+        
         var types: String = ""
         for type in pokemon.types {
-            types.append(contentsOf: type.type.name)
+            types.append(contentsOf: "\(type.type.name) ")
         }
+        
+        let imageURL = pokemon.sprites.frontDefault
+        
+        pokeController?.fetchPokemonImage(from: imageURL, completion: { result in
+            do {
+                let imageData = try result.get()
+                let pokemonImage = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    self.pokeImageView.image = pokemonImage
+                }
+            }catch {
+                NSLog("Error getting image:\(error)")
+            }
+        })
+        
+        pokeTitleLabel.text = pokemon.name
+        IDLabel.text = String(pokemon.id)
+        abilitiesLabel.text = abilities
         typeLabel.text = types
     }
-    
+
 }
 
 //

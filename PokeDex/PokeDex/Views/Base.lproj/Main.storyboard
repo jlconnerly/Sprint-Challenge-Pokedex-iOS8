@@ -181,7 +181,7 @@
                         <outlet property="abilitiesLabel" destination="jbh-Ut-NDc" id="i4b-rc-0Ug"/>
                         <outlet property="pokeImageView" destination="vbG-30-AoV" id="Ftd-6N-eIq"/>
                         <outlet property="pokeSearchBar" destination="dYA-Sc-czV" id="1S2-gE-UoY"/>
-                        <outlet property="pokeTItleLabel" destination="31w-QP-ZOR" id="B4G-Uk-j9e"/>
+                        <outlet property="pokeTitleLabel" destination="31w-QP-ZOR" id="B4G-Uk-j9e"/>
                         <outlet property="typeLabel" destination="m58-IE-abT" id="AeU-TJ-ADm"/>
                     </connections>
                 </viewController>

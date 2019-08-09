@@ -12,6 +12,7 @@ struct Pokemon: Codable {
     let id: Int
     let name: String
     let abilities: [Ability]
+    let sprites: Sprites
     let types: [TypeElement]
 }
 
@@ -25,5 +26,13 @@ struct TypeElement: Codable {
 
 struct Species: Codable {
     let name: String
+}
+
+struct Sprites: Codable {
+    let frontDefault: URL
+    
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+    }
 }
 

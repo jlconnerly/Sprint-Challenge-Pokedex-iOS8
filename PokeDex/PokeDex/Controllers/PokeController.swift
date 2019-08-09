@@ -28,6 +28,7 @@ class PokeController {
         case otherError(Error)
         case badData
         case noDecode
+        case badStatusCode
     }
     
     //
@@ -39,7 +40,7 @@ class PokeController {
     let baseURL = URL(string: "http://poke-api.vapor.cloud/api/v2/")!
     
     //
-    //MARK: - getPokemon
+    //MARK: - Fetch Pokemon
     //
     
     func fetchPokemon(with name: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
@@ -76,13 +77,35 @@ class PokeController {
                 NSLog("Error decoding pokemon: \(name)")
                 completion(.failure(.noDecode))
             }
-            
-            
-            
         }.resume()
        
     }
     
+    //
+    //MARK: - Fetch Pokemon Image
+    //
     
+    func fetchPokemonImage(from imageURL: URL, completion: @escaping (Result<Data, NetworkError>)-> Void) {
+        URLSession.shared.dataTask(with: imageURL) { imageData, response, error in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.badStatusCode))
+                NSLog("bad status code:\(error)")
+                return
+            }
+            
+            if let error = error {
+                completion(.failure(.otherError(error)))
+                return
+            }
+            
+            guard let data = imageData else {
+                completion(.failure(.badData))
+                NSLog("No data provided for image:\(error)")
+                return
+            }
+            completion(.success(data))
+        }.resume()
+    }
     
 }
