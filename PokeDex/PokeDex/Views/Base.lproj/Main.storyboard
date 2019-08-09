@@ -178,11 +178,15 @@
                     </view>
                     <connections>
                         <outlet property="IDLabel" destination="KMp-e5-7Sv" id="Goo-I3-PHC"/>
+                        <outlet property="abilitiesHeaderLabel" destination="rtv-8X-NVw" id="YGd-2D-98u"/>
                         <outlet property="abilitiesLabel" destination="jbh-Ut-NDc" id="i4b-rc-0Ug"/>
+                        <outlet property="idHeaderLabel" destination="xWX-ME-eK9" id="HLk-Jl-6OS"/>
                         <outlet property="pokeImageView" destination="vbG-30-AoV" id="Ftd-6N-eIq"/>
                         <outlet property="pokeSearchBar" destination="dYA-Sc-czV" id="1S2-gE-UoY"/>
                         <outlet property="pokeTitleLabel" destination="31w-QP-ZOR" id="B4G-Uk-j9e"/>
+                        <outlet property="saveButton" destination="Xdx-bS-rca" id="UYT-mU-qsA"/>
                         <outlet property="typeLabel" destination="m58-IE-abT" id="AeU-TJ-ADm"/>
+                        <outlet property="typesHeaderLabel" destination="6el-we-Mjz" id="F7f-Eb-2IM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJe-bq-DWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

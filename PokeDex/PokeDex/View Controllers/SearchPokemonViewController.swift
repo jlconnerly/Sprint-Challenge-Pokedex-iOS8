@@ -21,6 +21,10 @@ class SearchPokemonViewController: UIViewController {
     @IBOutlet weak var IDLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var abilitiesLabel: UILabel!
+    @IBOutlet weak var idHeaderLabel: UILabel!
+    @IBOutlet weak var typesHeaderLabel: UILabel!
+    @IBOutlet weak var abilitiesHeaderLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     var pokeController: PokeController?
     
@@ -37,6 +41,14 @@ class SearchPokemonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pokeSearchBar.delegate = self
+        pokeTitleLabel.isHidden = true
+        IDLabel.isHidden = true
+        typeLabel.isHidden = true
+        abilitiesLabel.isHidden = true
+        idHeaderLabel.isHidden = true
+        typesHeaderLabel.isHidden = true
+        abilitiesHeaderLabel.isHidden = true
+        saveButton.isHidden = true
     }
     
     //
@@ -51,6 +63,15 @@ class SearchPokemonViewController: UIViewController {
     }
     
     private func updateView() {
+        
+        pokeTitleLabel.isHidden = false
+        IDLabel.isHidden = false
+        typeLabel.isHidden = false
+        abilitiesLabel.isHidden = false
+        idHeaderLabel.isHidden = false
+        typesHeaderLabel.isHidden = false
+        abilitiesHeaderLabel.isHidden = false
+        saveButton.isHidden = false
         
         guard let pokemon = pokemon else { return }
         

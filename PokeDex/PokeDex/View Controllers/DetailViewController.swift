@@ -55,6 +55,7 @@ class DetailViewController: UIViewController {
                     self.IDLabel.text = String(pokemon.id)
                     self.abilitiesLabel.text = abilities
                     self.typeLabel.text = types
+                    self.title = pokemon.name
                 }
             }catch {
                 NSLog("Error getting image:\(error)")
