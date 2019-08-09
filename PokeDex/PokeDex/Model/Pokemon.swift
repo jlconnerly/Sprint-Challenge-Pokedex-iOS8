@@ -16,13 +16,14 @@ struct Pokemon: Codable {
 }
 
 struct Ability: Codable {
-    let ability: String
+    let ability: Species
+}
+
+struct TypeElement: Codable {
+    let type: Species
 }
 
 struct Species: Codable {
     let name: String
 }
 
-struct TypeElement: Codable {
-    let type: String
-}

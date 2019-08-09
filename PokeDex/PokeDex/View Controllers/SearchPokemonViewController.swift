@@ -36,6 +36,7 @@ class SearchPokemonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pokeSearchBar.delegate = self
     }
     
     //
@@ -53,23 +54,16 @@ class SearchPokemonViewController: UIViewController {
         
         var abilities: String = ""
         for ability in pokemon.abilities {
-            abilities.append(contentsOf: ability.ability)
+            abilities.append(contentsOf: "\(ability.ability.name) ")
         }
         abilitiesLabel.text = abilities
+        var types: String = ""
+        for type in pokemon.types {
+            types.append(contentsOf: type.type.name)
+        }
+        typeLabel.text = types
     }
     
-    //
-    // MARK: - Navigation
-    //
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
-    
-
 }
 
 //
@@ -78,11 +72,10 @@ class SearchPokemonViewController: UIViewController {
 
 extension SearchPokemonViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
-        guard let name = pokeSearchBar.text,
-              !name.isEmpty,
-              let pokeController = pokeController else { return }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let name = pokeSearchBar.text?.lowercased(),
+            !name.isEmpty,
+            let pokeController = pokeController else { return }
         
         pokeController.fetchPokemon(with: name, completion: { result in
             
@@ -94,8 +87,6 @@ extension SearchPokemonViewController: UISearchBarDelegate {
             }catch {
                 NSLog("Error Getting pokemon when fetched in DetailView:\(error)")
             }
-            
-            
         })
     }
 }

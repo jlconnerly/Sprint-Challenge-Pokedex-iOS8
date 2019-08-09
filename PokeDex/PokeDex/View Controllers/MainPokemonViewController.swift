@@ -35,7 +35,10 @@ class MainPokemonViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      
+        if segue.identifier == "SearchSegue" {
+            guard let searchVC = segue.destination as? SearchPokemonViewController else { return }
+            searchVC.pokeController = pokeController
+        }
     }
     
     //

@@ -44,10 +44,7 @@ class PokeController {
     
     func fetchPokemon(with name: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
         
-        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        
-        let requestURL = baseURL.appendingPathComponent("pokemon")
-        requestURL.appendingPathComponent(name)
+        let requestURL = baseURL.appendingPathComponent("pokemon/\(name)")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
