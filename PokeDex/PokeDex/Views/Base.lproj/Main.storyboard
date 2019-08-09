@@ -13,7 +13,7 @@
         <!--Pokedex-->
         <scene sceneID="tLL-lW-7iF">
             <objects>
-                <viewController id="oUY-R2-6sq" sceneMemberID="viewController">
+                <viewController id="oUY-R2-6sq" customClass="MainPokemonViewController" customModule="PokeDex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nEF-yl-sSu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,6 +34,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oUY-R2-6sq" id="6zk-gB-uSH"/>
+                                    <outlet property="delegate" destination="oUY-R2-6sq" id="Ehz-c1-9uc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,19 +52,23 @@
                     <navigationItem key="navigationItem" title="Pokedex" id="ekd-yQ-M7S">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="jUS-su-upF">
                             <connections>
+                                <action selector="searchButtonTapped:" destination="oUY-R2-6sq" id="pnx-MQ-936"/>
                                 <segue destination="5SM-S1-5uY" kind="show" identifier="SearchSegue" id="euD-Ov-y51"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="ypI-hY-tCz" id="LIn-TD-rWz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBV-Dq-3q1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="538" y="129"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Pokemon View Controller-->
         <scene sceneID="xkp-z3-Qho">
             <objects>
-                <viewController id="5SM-S1-5uY" sceneMemberID="viewController">
+                <viewController id="5SM-S1-5uY" customClass="SearchPokemonViewController" customModule="PokeDex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ni2-sL-u8k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,6 +137,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdx-bS-rca">
                                 <rect key="frame" x="157" y="763" width="101" height="30"/>
                                 <state key="normal" title="Save Pokemon"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="5SM-S1-5uY" eventType="touchUpInside" id="JUW-v8-CfU"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbG-30-AoV">
                                 <rect key="frame" x="107" y="282" width="200" height="200"/>
@@ -165,6 +176,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dvn-hw-vTG"/>
                     </view>
+                    <connections>
+                        <outlet property="IDLabel" destination="KMp-e5-7Sv" id="Goo-I3-PHC"/>
+                        <outlet property="abilitiesLabel" destination="jbh-Ut-NDc" id="i4b-rc-0Ug"/>
+                        <outlet property="pokeImageView" destination="vbG-30-AoV" id="Ftd-6N-eIq"/>
+                        <outlet property="pokeSearchBar" destination="dYA-Sc-czV" id="1S2-gE-UoY"/>
+                        <outlet property="pokeTItleLabel" destination="31w-QP-ZOR" id="B4G-Uk-j9e"/>
+                        <outlet property="typeLabel" destination="m58-IE-abT" id="AeU-TJ-ADm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJe-bq-DWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -188,10 +207,10 @@
             </objects>
             <point key="canvasLocation" x="-286.95652173913044" y="128.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="hXL-Dy-1qS">
             <objects>
-                <viewController id="t8W-27-Oeh" sceneMemberID="viewController">
+                <viewController id="t8W-27-Oeh" customClass="DetailViewController" customModule="PokeDex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W8F-35-Fgo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,10 +302,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nIu-TV-YdA"/>
                     </view>
+                    <connections>
+                        <outlet property="IDLabel" destination="c1w-gW-bjf" id="OGw-Yh-iGD"/>
+                        <outlet property="abilitiesLabel" destination="cvA-QC-MbB" id="Zjc-BX-4Qw"/>
+                        <outlet property="pokeImageView" destination="Nby-cf-Ugl" id="B0H-Mm-ArE"/>
+                        <outlet property="pokeNameLabel" destination="uU6-fM-c05" id="fTH-Oc-oSN"/>
+                        <outlet property="typeLabel" destination="h8d-1b-lFJ" id="3ow-kH-i2A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfE-AJ-I2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444.9275362318842" y="-255.13392857142856"/>
+            <point key="canvasLocation" x="1445" y="-253"/>
         </scene>
     </scenes>
 </document>

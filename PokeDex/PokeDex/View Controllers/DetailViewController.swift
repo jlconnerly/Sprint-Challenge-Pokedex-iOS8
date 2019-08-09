@@ -9,11 +9,27 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    //
+    //MARK: - IBOutlets & Properties
+    //
 
+    
+    @IBOutlet weak var pokeNameLabel: UILabel!
+    @IBOutlet weak var pokeImageView: UIImageView!
+    @IBOutlet weak var IDLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var abilitiesLabel: UILabel!
+    
+    var pokeController: PokeController?
+    
+    //
+    //MARK: - View LifeCycle
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
@@ -28,3 +44,5 @@ class DetailViewController: UIViewController {
     */
 
 }
+
+
