@@ -13,18 +13,18 @@ struct Pokemon: Codable {
     let name: String
     let abilities: [Ability]
     let sprites: Sprites
-    let types: [TypeElement]
+    let types: [Type]
 }
 
 struct Ability: Codable {
-    let ability: Species
+    let ability: Name
 }
 
-struct TypeElement: Codable {
-    let type: Species
+struct Type: Codable {
+    let type: Name
 }
 
-struct Species: Codable {
+struct Name: Codable {
     let name: String
 }
 

@@ -66,7 +66,7 @@
 				32BCF5F222FDC9D100E760D9 /* Model */,
 				32BCF5E722FDC33B00E760D9 /* Views */,
 				32BCF5EF22FDC9B300E760D9 /* View Controllers */,
-				32BCF5F522FDC9EA00E760D9 /* Controllers */,
+				32BCF5F522FDC9EA00E760D9 /* Model Controllers */,
 			);
 			path = PokeDex;
 			sourceTree = "<group>";
@@ -108,12 +108,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		32BCF5F522FDC9EA00E760D9 /* Controllers */ = {
+		32BCF5F522FDC9EA00E760D9 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				32BCF5F322FDC9E400E760D9 /* PokeController.swift */,
 			);
-			path = Controllers;
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
